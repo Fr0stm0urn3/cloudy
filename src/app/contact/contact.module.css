@@ -40,5 +40,12 @@
   color: var(--text);
   font-weight: bold;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 }
