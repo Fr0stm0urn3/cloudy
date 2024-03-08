@@ -13,7 +13,7 @@ export const authConfig = {
     },
     async session({ session, token }) {
       if (session) {
-        session.id = token.id
+        session.user.id = token.id
         session.user.isAdmin = token.isAdmin
       }
       return session
