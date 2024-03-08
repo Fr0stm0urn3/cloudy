@@ -4,23 +4,35 @@ import PostUser from "@/components/postUser/PostUser"
 import { Suspense } from "react"
 import { getPost } from "@/lib/data"
 
-// const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`)
-
-//   if (!res.ok) {
-//     throw new Error("Something went wrong")
-//   }
-
-//   return res.json()
-// }
-
-const SinglePostPage = async ({ params }) => {
+export const generateMetadata = async ({ params }) => {
   const { slug } = params
 
   const post = await getPost(slug)
 
-  // const post = await getData(slug)
-  console.log(post)
+  return {
+    title: post.title,
+    description: post.desc,
+  }
+}
+
+const getData = async (slug) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/blog/${slug}`)
+
+    if (!res.ok) {
+      throw new Error("Something went wrong")
+    }
+
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const SinglePostPage = async ({ params }) => {
+  const { slug } = params
+
+  const post = await getData(slug)
 
   return (
     <div className={styles.container}>
