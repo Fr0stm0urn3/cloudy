@@ -1,11 +1,19 @@
+import { FaGithub } from "react-icons/fa"
 import { handleGithubLogin } from "@/lib/actions"
+import LoginForm from "@/components/loginForm/LoginForm"
+import styles from "./login.module.css"
 
-const LoginPage = async () => {
+const LoginPage = () => {
   return (
-    <div>
-      <form action={handleGithubLogin}>
-        <button>Login with GitHub</button>
-      </form>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <form action={handleGithubLogin}>
+          <button className={styles.github}>
+            Login with GitHub <FaGithub className={styles.githubIcon} size={20} />
+          </button>
+        </form>
+        <LoginForm />
+      </div>
     </div>
   )
 }
